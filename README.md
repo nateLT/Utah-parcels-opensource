@@ -27,6 +27,7 @@ The stack is python, postgis, trex
 The web server is currently python and flask I could do node or golang if I wanted.
 
 Using basic html and js at the moment with mapbox gl being used for the map portion.
+Parcels are clickable and update information on click.
 
 
 ![image](readmeimages/pageimage.jpg)
