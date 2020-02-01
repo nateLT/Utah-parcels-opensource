@@ -29,5 +29,5 @@ The web server is currently python and flask I could do node or golang if I want
 Using basic html and js at the moment with mapbox gl being used for the map portion.
 
 
-[[readmeimages/pageimage.jpg]]
+![image](readmeimages/pageimage.jpg)
  
