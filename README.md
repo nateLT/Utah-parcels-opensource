@@ -32,3 +32,4 @@ Parcels are clickable and update information on click.
 
 ![image](readmeimages/pageimage.jpg)
  
+Ps one thing you will end up having problems with the postgis data it has crossing lines. I have the sql to fix it but will add later.
