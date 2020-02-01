@@ -5,17 +5,26 @@ from zipfile import ZipFile
 import shutil
 import psycopg2
 
-url = 'https://doc-08-3s-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/5ruob4uon2aqftuugcsc2pj6jd44lpmh/1575244800000/06829744149498025287/*/0ByStJjVZ7c7mZHE1UXowZ3QyRVE?e=download'
+url = 'https://opendata.arcgis.com/datasets/69477c1143924bc9990cdb930b033fb5_0.zip'
 zipname = 'utahgis.zip'
 def download_url(url):
-    try:
-        if os.pa
-        
-        return 'zip failed'
+    if os.path.exists(zipname):
+        return 'already downloaded'
+    else:
+        urllib.request.urlretrieve(url, zipname)
+        return 'downloaded'
+
+def unzip_download(zipname):
+    if os.path.exists('gis'):
+        return 'zip compled'
+    else:
+        with ZipFile(zipname, 'r') as zipObj:
+            zipObj.extractall('gis')
+        return 'already ziped'
 
 def reproject_code():
     try:
-        os.system('ogr2ogr -f "ESRI Shapefile" -t_srs EPSG:3857 gis\output.shp gis\Parcels_Utah\Parcels_Utah.shp')
+        os.system('ogr2ogr -f "ESRI Shapefile" -t_srs EPSG:3857 gis\output.shp gis\Utah_Utah_County_Parcels_LIR.shp')
         return 'reprojection complete'
     except:
         return 'reprojection fail'
