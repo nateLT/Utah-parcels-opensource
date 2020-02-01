@@ -1,0 +1,139 @@
+html,body{
+    margin:0;
+    min-width: 305px;
+    font-family: 'Archivo', sans-serif;
+    overflow: hidden;
+}
+
+.title{
+    font-family: 'Lobster', cursive;
+}
+
+
+/*Top Nav */
+
+
+.navbar {
+    position: fixed;
+    top:0;
+    width: 100%;
+    background-color:white;
+    border-bottom: 1px solid lightgray; 
+    overflow: hidden;
+    z-index: 2;
+  }
+  
+.navbar a {
+    padding: 12px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+    
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.topnav-right {
+    float: right;
+  }
+
+.topnav-lef{
+    float: left;
+  }
+
+
+
+
+/* Map Section */
+
+#map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+
+/* side menu */
+
+#side_menu{
+    padding-top: 50px;
+    position: absolute;
+    background: white;
+    width:  250px;
+    height: 100%;
+    border-right: 1px solid lightgray; 
+}
+
+/* search bar */
+.down{
+
+    
+    border-bottom: .05px solid lightgray; 
+    padding-bottom: 10px;
+  }
+
+  .searchit span {
+    display:block;
+    padding: .3em 1em;
+    background-color: #f0f0f0;
+    border-radius: .25em;
+    border: 1px solid #d9d9d9 ;
+    
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 8px;
+  }
+
+  input[id=searchbar] {
+    background: none;
+    border: none;
+    width: 90%;
+    height: 2em;
+    line-height: 2em;
+    font-size: 12px;
+    color: gray;
+    display: inline;
+    
+  }
+
+
+  
+  #address_button {
+    margin:0 auto;
+    display:block;
+    margin-top: 10px;
+      border-color: black;
+      border-radius: .25em;
+      padding: 5px;
+      color: black;
+  }
+
+
+  .pic{
+    width: inherit;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  }
+
+  .info_container{
+    margin-top: 10px;
+    width: inherit;
+  }
+
+
+  .parcel_header{
+    font: small-caption;
+    margin: 8px;
+  }
+
+  .parcel_data{
+    font-weight: bold;
+    margin: 8px;
+  }
+
+  

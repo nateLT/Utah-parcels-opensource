@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Travel Map</title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+  <link href="https://fonts.googleapis.com/css?family=Archivo" rel="stylesheet">
+  <link rel="stylesheet" href="static/main.css" type="text/css">
+</head>
+
+<body>
+  <div class="navbar">
+    <a class="topnav-lef"><i class="fas fa-bars"></i></a>
+
+    <div class="topnav-centered">
+      <a class="title">Utah County Parcel</a>
+    </div>
+
+    <a id="btn_map" class="topnav-right"><i class="fas fa-location-arrow"></i></a>
+  </div>
+
+  <div id="map"></div>
+  <div id="side_menu">
+    <div class="down">
+      <label class="searchit">
+
+        <span class="searchspan"><i class="fas fa-search search-gray"></i><input id="searchbar" name="search"
+            type="text" placeholder=" Search Parcel or Address" /></span>
+      </label>
+      <span>
+        <input id="address_button" type="button" class="search_buttons" value="Enter">
+      </span>
+    </div>
+
+    <div class="info_container">
+      <img class="pic" src="http://www.utahcounty.gov/houseimages/200709/972301.jpg" />
+      <div class="parcel_header">Parcel ID:</div>
+      <div id="p_id" class="parcel_data">880835</div>
+      <div class="parcel_header">Parcel Address:</div>
+      <div id="p_address" class="parcel_data">7356 N HARVEST CROP DR</div>
+      <div class="parcel_header">Parcel City:</div>
+      <div id="p_city" class="parcel_data">Eagle Mountain</div>
+      <div class="parcel_header">Parcel Zip:</div>
+      <div id="p_zip" class="parcel_data">84005</div>
+      <div class="parcel_header">Owner Type:</div>
+      <div id="p_type" class="parcel_data">Private</div>
+      <div class="parcel_header">Owner Name:</div>
+      <div id="p_owner" class="parcel_data">EVANS RANCH LLC</div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="static/navbar.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+  <script>
+
+    function update_text(feature) {
+      if (feature.length > 0) {
+        $('#p_id').text('NA');
+        $('#p_address').text('NA');
+        $('#p_city').text('NA');
+        $('#p_zip').text('NA');
+        $('#p_type').text('NA');
+        $('#p_owner').text('NA');
+
+
+        $('#p_id').text(feature[0].properties.parcel_id);
+        $('#p_address').text(feature[0].properties.parcel_add);
+        $('#p_city').text(feature[0].properties.parcel_cit);
+        $('#p_zip').text(feature[0].properties.parcel_zip);
+        $('#p_type').text(feature[0].properties.own_type);
+        $('#p_owner').text(feature[0].properties.ownername);
+      }
+    }
+
+
+
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'http://localhost:5000/static/main.style.json',
+      center: [-111.655390, 40.24774],
+      zoom: 12
+    });
+
+
+
+
+    map.on('click', function (e) {
+      // set bbox as reactangle area around clicked point
+      var dist = 1;
+      var bbox = [[e.point.x - 1, e.point.y - 1], [e.point.x + 1, e.point.y + 1]];
+      var features = map.queryRenderedFeatures(bbox, { layers: ['parcel-copy'] });
+      console.log(features);
+      update_text(features);
+
+      var filter = features.reduce(function (memo, feature) {
+        memo.push(feature.properties.ogc_fid);
+        return memo;
+      }, ['in', 'ogc_fid']);
+
+      map.setFilter("parcel-highlight", filter);
+      // Run through the selected features and set a filter
+      // to match features with unique FIPS codes to activate
+      // the `counties-highlighted` layer.
+      /*var filter = features.reduce(function (memo, feature) {
+        memo.push(feature.properties.FIPS);
+        return memo;
+      }, ['in', 'FIPS']);
+
+      map.setFilter("counties-highlighted", filter);*/
+    });
+
+  </script>
+
+</body>
+
+</html>
