@@ -1,0 +1,4 @@
+
+FROM sourcepole/t-rex
+ENTRYPOINT t_rex serve --bind=0.0.0.0 --dbconn postgresql://postgres:password@172.21.0.2/postgres --openbrowser=false --cache /tmp/mvtcache
+

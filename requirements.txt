@@ -1,0 +1,5 @@
+flask
+numpy
+requests
+psycopg2
+gdal

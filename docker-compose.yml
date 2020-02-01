@@ -1,0 +1,43 @@
+version: '3'
+services:
+  web:
+    tty: true
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    restart: on-failure
+    depends_on:
+      - db
+    links: 
+      - db
+    environment:
+      FLASK_ENV: development
+  db:
+    image: mdillon/postgis
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      # <Port exposed> :
+      - '5432:5432'
+    expose:
+      # Opens port 5432 on the container
+      - '5432'
+  trex:
+    image: sourcepole/t-rex
+    tty: true
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./t_rex/dockerfile
+    ports:
+      - "6767:6767"
+    depends_on:
+      - db
+
+
+  
+ 
+  
