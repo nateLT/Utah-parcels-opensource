@@ -6,7 +6,7 @@ The only things needed is docker-compose to be installed and python to populate 
 
 Once docker is installed:
 ``` bash
-	Docker-compose up
+Docker-compose up
 ```
 
 This should run everything and when its finished you will need to run python script in folder called python.
@@ -27,4 +27,7 @@ The stack is python, postgis, trex
 The web server is currently python and flask I could do node or golang if I wanted.
 
 Using basic html and js at the moment with mapbox gl being used for the map portion.
+
+
+[[readmeimages/pageimage.jpg]]
  
